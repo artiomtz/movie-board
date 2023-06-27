@@ -1,69 +1,105 @@
+import React, { useContext } from "react";
+import ContextPage from "../ContextPage";
 import Stream from "./Stream";
+import movieNotFound from "../assets/movieNotFound.jpg";
+import { Tooltip, Zoom, Typography } from "@mui/material";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function Movie() {
+export default function Movie(props) {
+  const { setPage, setResultsType, setSelectedMovieId } =
+    useContext(ContextPage);
+
   const ImageStyle = {
-    // width: "200px",
-    // "object-position": center,
-    // resizeMode: "contain",
+    objectFit: "cover",
     height: "400px",
-    // "justify-content": center,
-    "background-position": "center center",
-    // "background-repeat": "no-repeat",
-    // overflow: "hidden",
-    // height: "100%",
-    // "min-height": "100%",
     width: "100%",
-    // "border-radius": "5px",
-    "object-fit": "cover",
-    // "&:hover": {
-    //   backgroundColor: "yellow",
-    //   borderColor: "yellow",
-    //   "border-radius": "55px",
-    //   width: "10%",
-    // },
+    backgroundPosition: "center center",
   };
+
   const TextStyle = {
-    // "background-position": "center center",
-    // "&:hover fieldset": {
-    //   backgroundColor: "yellow",
-    //   borderColor: "yellow",
-    //   width: "10%",
-    // },
     overflow: "hidden",
-    "white-space": "nowrap",
-    "text-overflow": "ellipsis",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
     fontWeight: "bold",
-    "font-size": "18px",
+    fontSize: "17px",
   };
-  function MouseOver(event) {
-    event.target.style.opacity = 0.5;
-  }
-  function MouseOut(event) {
-    event.target.style.opacity = 1;
-  }
+
+  const setSimilar = () => {
+    setResultsType("similar");
+    setSelectedMovieId(props.movieId);
+    setPage(1);
+  };
+
   return (
     <>
-      <div class="p-3">
-        <div class="p-3 pb-1 border rounded">
-          <div class="row" style={TextStyle}>
-            <p>Title.....</p>
-          </div>
-          <div class="row pb-2">
-            <img
-              onMouseOver={MouseOver}
-              onMouseOut={MouseOut}
-              style={ImageStyle}
-              src="https://mediafiles.cineplex.com/Central/Film/Posters/33420_768_1024.jpg"
-              alt="Movie title didn't load"
-            />
-          </div>
-          <div class="row">
-            <button type="button" class="btn btn-dark">
-              See similar
-            </button>
-          </div>
-          <Stream />
-        </div>
+      <div className="col-9 col-sm-9 col-lg-4 p-3">
+        <motion.div
+          layout
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <AnimatePresence>
+            <div className="p-3 pb-1 border rounded">
+              <div className="row">
+                <p style={TextStyle}>{props.title}</p>
+              </div>
+              <div className="row pb-2">
+                <a href="">
+                  <motion.p whileHover={{ scale: 1.05, opacity: 0.5 }}>
+                    <Tooltip
+                      placement="left-end"
+                      arrow
+                      TransitionComponent={Zoom}
+                      TransitionProps={{ timeout: 250 }}
+                      title={
+                        <>
+                          <Typography
+                            sx={{
+                              width: "200px",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {props.title}
+                          </Typography>
+                          <Typography>
+                            Rating: {parseFloat(props.rating).toFixed(1)}
+                          </Typography>
+                          <Typography>
+                            Language: {props.language.toUpperCase()}
+                          </Typography>
+                          <Typography>Release: {props.date}</Typography>
+                        </>
+                      }
+                    >
+                      <img
+                        style={ImageStyle}
+                        src={"https://image.tmdb.org/t/p/w500" + props.poster}
+                        onError={({ currentTarget }) => {
+                          currentTarget.onerror = null;
+                          currentTarget.src = movieNotFound;
+                        }}
+                        alt="Movie title didn't load"
+                      />
+                    </Tooltip>
+                  </motion.p>
+                </a>
+              </div>
+              <div className="row">
+                <button
+                  type="button"
+                  className="btn btn-dark"
+                  onClick={() => {
+                    setSimilar();
+                  }}
+                >
+                  See similar
+                </button>
+              </div>
+              <Stream key={props.movieId} movieId={props.movieId} />
+            </div>
+          </AnimatePresence>
+        </motion.div>
       </div>
     </>
   );

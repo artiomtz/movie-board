@@ -1,2 +1,5 @@
 # movie-board
- First React project
+
+First React project
+
+Missing movie icon is taken from Pinterest.

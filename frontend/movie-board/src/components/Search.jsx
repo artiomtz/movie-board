@@ -1,23 +1,56 @@
+import React, { useContext } from "react";
+import ContextPage from "../ContextPage";
+
 export default function Search() {
+  const { setPage, setSearch, setResultsType } = useContext(ContextPage);
+
+  const searchMovies = () => {
+    let searchQuery = document.getElementById("searchQuery").value.trim();
+    document.getElementById("searchQuery").value = "";
+    var inputRegex = /^[0-9a-zA-Z!?$&*()'+-., ]+$/;
+
+    if (inputRegex.test(searchQuery)) {
+      if (searchQuery) {
+        setResultsType("search");
+        setSearch(searchQuery);
+        setPage(1);
+      }
+    } else {
+      alert("Please use allowed characters such as A-Z a-z 0-9 !?$&*()'+-.,");
+    }
+  };
+
+  const handleEnter = (e) => {
+    if (e.key == "Enter") {
+      searchMovies();
+    }
+  };
+
   return (
-    <>
-      <div class="mb-3">
-        <div class="row">
-          <div class="col-9">
-            <input
-              type="text"
-              class="form-control"
-              id="iiiii"
-              placeholder="Find your movie"
-            ></input>
-          </div>
-          <div class="col-3">
-            <button type="submit" class="btn btn-primary">
-              Search
-            </button>
-          </div>
+    <div className="container sticky-top p-4 pt-5 col-8 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+      <div className="row justify-content-center">
+        <div className="col-10 col-xxl-7">
+          <input
+            type="text"
+            className="form-control"
+            id="searchQuery"
+            placeholder="Find your movie"
+            onKeyDown={(e) => {
+              handleEnter(e);
+            }}
+          ></input>
+        </div>
+        <div className="col-2 col-xxl-2">
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              searchMovies();
+            }}
+          >
+            Search
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
