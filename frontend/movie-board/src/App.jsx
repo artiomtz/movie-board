@@ -1,23 +1,15 @@
 import "bootstrap/dist/css/bootstrap.css";
-import { ContextProvider } from "./ContextPage";
-import Title from "./components/Title";
-import MovieList from "./components/MovieList";
-import Search from "./components/Search";
-import Carousel from "./components/Carousel";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/home";
+import Details from "./pages/Details";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
-    <ContextProvider>
-      <div className="text-bg-dark">
-        <div className="row p-2 m-0">
-          <div className="col-xxl-2"></div>
-          <Title />
-          <Carousel />
-          <div className="col-xxl-2"></div>
-        </div>
-        <Search />
-        <MovieList />
-      </div>
-    </ContextProvider>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/:showType/:showId" element={<Details />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }

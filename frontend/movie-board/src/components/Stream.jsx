@@ -10,7 +10,7 @@ export default function Stream(props) {
   const { providers, getMovieProviders, isLoading, setIsLoading } =
     useContext(ContextPage);
 
-  const IconStyle = {
+  const iconStyle = {
     height: "30px",
   };
 
@@ -36,7 +36,6 @@ export default function Stream(props) {
             width={80}
             color="gray"
             wrapperStyle={{}}
-            wrapperClass=""
             secondaryColor="light-gray"
             strokeWidth={7}
             strokeWidthSecondary={7}
@@ -63,8 +62,8 @@ export default function Stream(props) {
               <div className="row">
                 <div className="col-2">
                   <img
-                    style={IconStyle}
-                    src={provider.format}
+                    style={iconStyle}
+                    src={provider.format ? provider.format : movieNotFound}
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null;
                       currentTarget.src = movieNotFound;

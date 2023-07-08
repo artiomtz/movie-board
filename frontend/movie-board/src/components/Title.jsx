@@ -2,80 +2,74 @@ import React from "react";
 import IconApp from "../assets/iconApp.png";
 import IconTmdb from "../assets/iconTmdb.svg";
 import IconWatchMode from "../assets/iconWatchMode.png";
-import IconMadeBy from "../assets/IconMadeBy.jpg";
+import IconMadeBy from "../assets/IconMadeBy.png";
 import { motion } from "framer-motion";
 
 export default function Title() {
-  const iconStyle = {
+  const bigIconStyle = {
     objectFit: "contain",
-    height: "40px",
+    height: "320px",
     width: "100%",
   };
 
-  const titleStyle = {
+  const iconStyle = {
     objectFit: "contain",
-    height: "350px",
+    height: "70px",
     width: "100%",
   };
 
   return (
-    <>
-      <motion.div
-        layout
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="container p-3 col-sm-10 col-md-10 col-lg-4 col-xl-4 col-xxl-3"
-      >
-        <div className="row justify-content-center">
-          <div className="">
-            <a href="">
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      className="container p-3 col-12 col-sm-10 col-md-10 col-lg-4 col-xl-4 col-xxl-3"
+    >
+      <div className="row justify-content-center">
+        <div>
+          <a href="/">
+            <img
+              style={bigIconStyle}
+              src={IconApp}
+              alt="App icon didn't load"
+            />
+          </a>
+        </div>
+        <div className="row">
+          <div className="p-2 col-4 col-xl-4">
+            <a
+              href="https://www.themoviedb.org/"
+              target="_blank"
+              rel="external"
+            >
               <img
-                style={titleStyle}
-                src={IconApp}
+                style={iconStyle}
+                src={IconTmdb}
                 alt="App icon didn't load"
               />
             </a>
           </div>
-          <div className="row">
-            <div className="p-2 col-4 col-xl-4">
-              <a
-                href="https://www.themoviedb.org/"
-                target="_blank"
-                rel="external"
-              >
-                <img
-                  style={iconStyle}
-                  src={IconTmdb}
-                  alt="App icon didn't load"
-                />
-              </a>
-            </div>
-            <div className="p-2 col-4 col-xl-4">
-              <a
-                href="https://www.watchmode.com/"
-                target="_blank"
-                rel="external"
-              >
-                <img
-                  style={iconStyle}
-                  src={IconWatchMode}
-                  alt="App icon didn't load"
-                />
-              </a>
-            </div>
-            <div className="p-2 col-4 col-xl-4">
-              <a href="http://artiomtsimk.in/" target="_blank" rel="external">
-                <img
-                  style={iconStyle}
-                  src={IconMadeBy}
-                  alt="App icon didn't load"
-                />
-              </a>
-            </div>
+          <div className="p-2 col-4 col-xl-4">
+            <a href="https://www.watchmode.com/" target="_blank" rel="external">
+              <img
+                style={iconStyle}
+                src={IconWatchMode}
+                alt="App icon didn't load"
+              />
+            </a>
+          </div>
+          <div className="p-2 col-4 col-xl-4">
+            <a href="http://artiomtsimk.in/" target="_blank" rel="external">
+              <img
+                style={iconStyle}
+                src={IconMadeBy}
+                alt="App icon didn't load"
+              />
+            </a>
           </div>
         </div>
-      </motion.div>
-    </>
+      </div>
+    </motion.div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import ContextPage from "../ContextPage";
 import Carousel from "react-bootstrap/Carousel";
 import tvNotFound from "../assets/tvNotFound.jpg";
@@ -33,7 +34,7 @@ export default function UncontrolledExample() {
           <Carousel>
             {tv.map((show) => (
               <Carousel.Item key={show.id}>
-                <a href="">
+                <Link to={"/tv/" + show.id}>
                   <Tooltip
                     placement="bottom-end"
                     arrow
@@ -64,16 +65,19 @@ export default function UncontrolledExample() {
                       style={imageStyle}
                       className="img-fluid"
                       src={
-                        "https://image.tmdb.org/t/p/w500" + show.backdrop_path
+                        show.backdrop_path
+                          ? "https://image.tmdb.org/t/p/w500" +
+                            show.backdrop_path
+                          : tvNotFound
                       }
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null;
                         currentTarget.src = tvNotFound;
                       }}
-                      alt="Movie title didn't load"
+                      alt="Show title didn't load"
                     />
                   </Tooltip>
-                </a>
+                </Link>
               </Carousel.Item>
             ))}
           </Carousel>

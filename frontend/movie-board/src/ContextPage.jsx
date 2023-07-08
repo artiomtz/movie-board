@@ -3,16 +3,22 @@ import { tmdbApiKey, watchModeApiKey } from "./keys.js";
 import {
   movieProvidersExample,
   availableProvidersExample,
-} from "./assets/apiResponseExample.js"; ////////// TMP
+} from "./assets/apiResponseExample.js";
 
 const ContextPage = createContext();
 
 export function ContextProvider({ children }) {
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
+  const [movieDetails, setMovieDetails] = useState({});
   const [tv, setTv] = useState([]);
+  const [cast, setCast] = useState([]);
+  const [images, setImages] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [providers, setProviders] = useState([]);
   const [availableProviders, setAvailableProviders] = useState([]);
+  const [languages, setLanguages] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedMovieId, setSelectedMovieId] = useState(0);
   const [resultsType, setResultsType] = useState("trending");
@@ -58,6 +64,19 @@ export function ContextProvider({ children }) {
     return filteredProviders;
   };
 
+  const filterCast = (results) => {
+    let addCast = [];
+    results.forEach((person) => {
+      for (let i = 0; i < addCast.length; i++) {
+        if (addCast[i].id == person.id) {
+          return;
+        }
+      }
+      addCast.push(person);
+    });
+    return addCast;
+  };
+
   const updateMovies = () => {
     if (page == 1) {
       document.body.scrollTop = 0;
@@ -75,7 +94,7 @@ export function ContextProvider({ children }) {
   const getTrendingMovies = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/trending/movie/day?language=en-US?&api_key=${tmdbApiKey}&page=${page}`
+        `https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=${tmdbApiKey}&page=${page}`
       );
       const data = await response.json();
       // console.log(data);
@@ -86,6 +105,7 @@ export function ContextProvider({ children }) {
       }
       setTotalPages(data.total_pages);
     } catch (error) {
+      alert("hmm.. something's not right");
       console.log("Error while loading trending movies. Try again later.");
     }
   };
@@ -93,7 +113,7 @@ export function ContextProvider({ children }) {
   const getSimilarMovies = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${selectedMovieId}/similar?language=en-US?&api_key=${tmdbApiKey}&page=${page}`
+        `https://api.themoviedb.org/3/movie/${selectedMovieId}/similar?language=en-US&api_key=${tmdbApiKey}&page=${page}`
       );
       const data = await response.json();
       // console.log(data);
@@ -130,7 +150,7 @@ export function ContextProvider({ children }) {
   const getTrendingTv = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/trending/tv/day?language=en-US?&api_key=${tmdbApiKey}`
+        `https://api.themoviedb.org/3/trending/tv/day?language=en-US&api_key=${tmdbApiKey}`
       );
       const data = await response.json();
       // console.log(data);
@@ -145,20 +165,21 @@ export function ContextProvider({ children }) {
 
   const getAvailableProviders = async () => {
     try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/trending/tv/day?language=en-US?&api_key=${tmdbApiKey}` ///////////// TMP
-        // `https://api.watchmode.com/v1/sources/?apiKey=${watchModeApiKey}` ///////////// REAL
-      );
-      const data = await response.json();
-      // console.log(data);
-      ///////////// REAL
-      // setAvailableProviders(() => {
-      //   return data ? data : [];
-      // });
-      ///////////// TMP
-      setAvailableProviders(() => {
-        return availableProvidersExample;
-      });
+      if (process.env.NODE_ENV == "production") {
+        const response = await fetch(
+          `https://api.watchmode.com/v1/sources/?apiKey=${watchModeApiKey}`
+        );
+        const data = await response.json();
+        // console.log(data);
+        setAvailableProviders(() => {
+          return data ? data : [];
+        });
+      } else {
+        console.log("Getting available providers in Dev mode");
+        setAvailableProviders(() => {
+          return availableProvidersExample;
+        });
+      }
     } catch (error) {
       console.log(
         "Error while loading available providers data. Try again later."
@@ -168,28 +189,125 @@ export function ContextProvider({ children }) {
 
   const getMovieProviders = async (movieId) => {
     try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/trending/tv/day?language=en-US?&api_key=${tmdbApiKey}` //////////// TMP
-        // `https://api.watchmode.com/v1/title/movie-${movieId}/sources/?apiKey=${watchModeApiKey}` ////////// REAL
-      );
-      const data = await response.json();
-      // console.log(data);
-      ///////////// REAL
-      // if (data) {
-      //   setProviders(() => {
-      //     setIsLoading(false);
-      //     return filterProviders(data); ///////////// REAL
-      //   });
-      // }
-      ///////////// TMP
-      if (data) {
+      if (process.env.NODE_ENV == "production") {
+        const response = await fetch(
+          `https://api.watchmode.com/v1/title/movie-${movieId}/sources/?apiKey=${watchModeApiKey}`
+        );
+        const data = await response.json();
+        // console.log(data);
+        if (data) {
+          setProviders(() => {
+            setIsLoading(false);
+            return filterProviders(data);
+          });
+        }
+      } else {
+        console.log("Getting movie providers in Dev mode");
         setProviders(() => {
           setIsLoading(false);
-          return filterProviders(movieProvidersExample); ///////////// REAL
+          return filterProviders(movieProvidersExample);
         });
       }
     } catch (error) {
       console.log("Error while loading movie providers data. Try again later.");
+    }
+  };
+
+  const getLanguages = async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/configuration/languages?api_key=${tmdbApiKey}`
+      );
+      const data = await response.json();
+      // console.log(data);
+      setLanguages(() => {
+        return data ? data : [];
+      });
+    } catch (error) {
+      console.log("Error while loading Languages data. Try again later.");
+    }
+  };
+
+  const getMovieDetails = async (showType, movieId) => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/${showType}/${movieId}?language=en-US&api_key=${tmdbApiKey}`
+      );
+      const data = await response.json();
+      // console.log(data);
+      setMovieDetails(() => {
+        return data ? data : null;
+      });
+    } catch (error) {
+      console.log("Error while loading Movie details. Try again later.");
+    }
+  };
+
+  const getCast = async (showType, movieId) => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/${showType}/${movieId}/credits?language=en-US&api_key=${tmdbApiKey}`
+      );
+      const data = await response.json();
+      // console.log(data);
+      if (data) {
+        setCast(() => {
+          return filterCast(data.cast).concat(filterCast(data.crew));
+        });
+      }
+    } catch (error) {
+      console.log("Error while loading Cast. Try again later.");
+    }
+  };
+
+  const getImages = async (showType, movieId) => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/${showType}/${movieId}/images?api_key=${tmdbApiKey}`
+      );
+      const data = await response.json();
+      // console.log(data);
+      if (data) {
+        setImages(() => {
+          return data.backdrops ? data.backdrops : [];
+        });
+      }
+    } catch (error) {
+      console.log("Error while loading Images. Try again later.");
+    }
+  };
+
+  const getVideos = async (showType, movieId) => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/${showType}/${movieId}/videos?api_key=${tmdbApiKey}`
+      );
+      const data = await response.json();
+      // console.log(data);
+      if (data) {
+        setVideos(() => {
+          return data.results ? data.results : [];
+        });
+      }
+    } catch (error) {
+      console.log("Error while loading Videos. Try again later.");
+    }
+  };
+
+  const getReviews = async (showType, movieId) => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/${showType}/${movieId}/reviews?language=en-US&page=1&api_key=${tmdbApiKey}`
+      );
+      const data = await response.json();
+      // console.log(data);
+      if (data) {
+        setReviews(() => {
+          return data.results ? data.results : [];
+        });
+      }
+    } catch (error) {
+      console.log("Error while loading Videos. Try again later.");
     }
   };
 
@@ -199,12 +317,16 @@ export function ContextProvider({ children }) {
         page,
         setPage,
         movies,
+        movieDetails,
         setMovies,
         tv,
         setTv,
+        cast,
+        images,
+        videos,
+        reviews,
         providers,
-        getMovieProviders,
-        getAvailableProviders,
+        languages,
         search,
         setSearch,
         selectedMovieId,
@@ -216,9 +338,15 @@ export function ContextProvider({ children }) {
         isLoading,
         setIsLoading,
         updateMovies,
+        getMovieDetails,
+        getCast,
+        getImages,
+        getVideos,
+        getReviews,
+        getMovieProviders,
+        getAvailableProviders,
+        getLanguages,
         searchMovies,
-        getTrendingMovies,
-        getSimilarMovies,
         getTrendingTv,
       }}
     >
