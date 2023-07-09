@@ -28,16 +28,16 @@ npm run dev
 
 ### Screenshots
 
-![App screenshot 1](.\frontend\movie-board\src\assets\app1.png)
+![App screenshot 1](frontend/movie-board/src/assets/app1.png)
 
 <hr/>
 
-![App screenshot 2](.\frontend\movie-board\src\assets\app2.png)
+![App screenshot 2](frontend/movie-board/src/assets/app2.png)
 
 <hr/>
 
-![App screenshot 3](.\frontend\movie-board\src\assets\app3.png)
+![App screenshot 3](frontend/movie-board/src/assets/app3.png)
 
 <hr/>
 
-![App screenshot 4](.\frontend\movie-board\src\assets\app4.png)
+![App screenshot 4](frontend/movie-board/src/assets/app4.png)
