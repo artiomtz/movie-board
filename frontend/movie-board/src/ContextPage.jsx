@@ -159,7 +159,7 @@ export function ContextProvider({ children }) {
       });
     } catch (error) {
       alert("Couldn't load Trending TV...");
-      console.log("Error while loading trending tv data. Try again later.");
+      console.log("Error while loading trending TV data. Try again later.");
     }
   };
 
