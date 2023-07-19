@@ -194,16 +194,18 @@ export function ContextProvider({ children }) {
         );
         const data = await response.json();
         // console.log(data);
-        if (data) {
+        setIsLoading(false);
+        if (data && Array.isArray(data)) {
           setProviders(() => {
-            setIsLoading(false);
             return filterProviders(data);
           });
+        } else {
+          setProviders([]);
         }
       } else {
         console.log("Getting movie providers in Dev mode");
+        setIsLoading(false);
         setProviders(() => {
-          setIsLoading(false);
           return filterProviders(movieProvidersExample);
         });
       }
