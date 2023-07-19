@@ -230,6 +230,8 @@ export function ContextProvider({ children }) {
   };
 
   const getMovieDetails = async (showType, movieId) => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/${showType}/${movieId}?language=en-US&api_key=${TMDB_TOKEN}`
