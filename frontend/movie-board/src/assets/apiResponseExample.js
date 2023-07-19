@@ -28,7 +28,7 @@ export const movieProvidersExample = [
   },
   {
     source_id: 307,
-    name: "VUDU",
+    name: "VUDU long nameeeeeeeeeeeeeeeeeeee",
     format: "HD",
     web_url: "https://www.vudu.com/content/movies/details/content/9089",
   },

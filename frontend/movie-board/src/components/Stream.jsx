@@ -16,6 +16,12 @@ export default function Stream(props) {
     borderRadius: "5px",
   };
 
+  const textStyle = {
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+  };
+
   const loadProviders = () => {
     setIsLoading(true);
     getMovieProviders(props.movieId);
@@ -69,7 +75,7 @@ export default function Stream(props) {
                     }}
                   />
                 </div>
-                <div className="col-10">
+                <div className="col-10" style={textStyle}>
                   <span className="p-2">{provider.name}</span>
                 </div>
               </div>
