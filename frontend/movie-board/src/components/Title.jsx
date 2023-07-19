@@ -2,7 +2,7 @@ import React from "react";
 import IconApp from "../assets/iconApp.png";
 import IconTmdb from "../assets/iconTmdb.svg";
 import IconWatchMode from "../assets/iconWatchMode.png";
-import IconMadeBy from "../assets/IconMadeBy.png";
+import IconMadeBy from "../assets/iconMadeBy.png";
 import { motion } from "framer-motion";
 
 export default function Title() {
