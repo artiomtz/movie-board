@@ -1,16 +1,10 @@
 import React, { useState, createContext } from "react";
+import {
+  movieProvidersExample,
+  availableProvidersExample,
+} from "./assets/apiResponseExample.js";
 
 const ContextPage = createContext();
-let movieProvidersExample = [];
-let availableProvidersExample = [];
-
-if (process.env.NODE_ENV != "production") {
-  import("./assets/apiResponseExample.js").then((results) => {
-    console.log("Setting movie providers in Dev mode");
-    movieProvidersExample = results.movieProvidersExample;
-    availableProvidersExample = results.availableProvidersExample;
-  });
-}
 
 export function ContextProvider({ children }) {
   const [page, setPage] = useState(1);
