@@ -1,11 +1,16 @@
 import React, { useState, createContext } from "react";
-import { tmdbApiKey, watchModeApiKey } from "./keys.js";
-import {
-  movieProvidersExample,
-  availableProvidersExample,
-} from "./assets/apiResponseExample.js";
 
 const ContextPage = createContext();
+let movieProvidersExample = [];
+let availableProvidersExample = [];
+
+if (process.env.NODE_ENV != "production") {
+  import("./assets/apiResponseExample.js").then((results) => {
+    console.log("Setting movie providers in Dev mode");
+    movieProvidersExample = results.movieProvidersExample;
+    availableProvidersExample = results.availableProvidersExample;
+  });
+}
 
 export function ContextProvider({ children }) {
   const [page, setPage] = useState(1);
@@ -94,7 +99,9 @@ export function ContextProvider({ children }) {
   const getTrendingMovies = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=${tmdbApiKey}&page=${page}`
+        `https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=${
+          import.meta.env.VITE_TMDB_TOKEN
+        }&page=${page}`
       );
       const data = await response.json();
       // console.log(data);
@@ -113,7 +120,9 @@ export function ContextProvider({ children }) {
   const getSimilarMovies = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${selectedMovieId}/similar?language=en-US&api_key=${tmdbApiKey}&page=${page}`
+        `https://api.themoviedb.org/3/movie/${selectedMovieId}/similar?language=en-US&api_key=${
+          import.meta.env.VITE_TMDB_TOKEN
+        }&page=${page}`
       );
       const data = await response.json();
       // console.log(data);
@@ -131,7 +140,9 @@ export function ContextProvider({ children }) {
   const searchMovies = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${search}&language=en-US&region=us&include_adult=false&api_key=${tmdbApiKey}&page=${page}`
+        `https://api.themoviedb.org/3/search/movie?query=${search}&language=en-US&region=us&include_adult=false&api_key=${
+          import.meta.env.VITE_TMDB_TOKEN
+        }&page=${page}`
       );
       const data = await response.json();
       // console.log(data);
@@ -150,7 +161,9 @@ export function ContextProvider({ children }) {
   const getTrendingTv = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/trending/tv/day?language=en-US&api_key=${tmdbApiKey}`
+        `https://api.themoviedb.org/3/trending/tv/day?language=en-US&api_key=${
+          import.meta.env.VITE_TMDB_TOKEN
+        }`
       );
       const data = await response.json();
       // console.log(data);
@@ -167,7 +180,9 @@ export function ContextProvider({ children }) {
     try {
       if (process.env.NODE_ENV == "production") {
         const response = await fetch(
-          `https://api.watchmode.com/v1/sources/?apiKey=${watchModeApiKey}`
+          `https://api.watchmode.com/v1/sources/?apiKey=${
+            import.meta.env.VITE_WATCHMODE_TOKEN
+          }`
         );
         const data = await response.json();
         // console.log(data);
@@ -191,7 +206,9 @@ export function ContextProvider({ children }) {
     try {
       if (process.env.NODE_ENV == "production") {
         const response = await fetch(
-          `https://api.watchmode.com/v1/title/movie-${movieId}/sources/?apiKey=${watchModeApiKey}`
+          `https://api.watchmode.com/v1/title/movie-${movieId}/sources/?apiKey=${
+            import.meta.env.VITE_WATCHMODE_TOKEN
+          }`
         );
         const data = await response.json();
         // console.log(data);
@@ -216,7 +233,9 @@ export function ContextProvider({ children }) {
   const getLanguages = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/configuration/languages?api_key=${tmdbApiKey}`
+        `https://api.themoviedb.org/3/configuration/languages?api_key=${
+          import.meta.env.VITE_TMDB_TOKEN
+        }`
       );
       const data = await response.json();
       // console.log(data);
@@ -231,7 +250,9 @@ export function ContextProvider({ children }) {
   const getMovieDetails = async (showType, movieId) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${showType}/${movieId}?language=en-US&api_key=${tmdbApiKey}`
+        `https://api.themoviedb.org/3/${showType}/${movieId}?language=en-US&api_key=${
+          import.meta.env.VITE_TMDB_TOKEN
+        }`
       );
       const data = await response.json();
       // console.log(data);
@@ -246,7 +267,9 @@ export function ContextProvider({ children }) {
   const getCast = async (showType, movieId) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${showType}/${movieId}/credits?language=en-US&api_key=${tmdbApiKey}`
+        `https://api.themoviedb.org/3/${showType}/${movieId}/credits?language=en-US&api_key=${
+          import.meta.env.VITE_TMDB_TOKEN
+        }`
       );
       const data = await response.json();
       // console.log(data);
@@ -263,7 +286,9 @@ export function ContextProvider({ children }) {
   const getImages = async (showType, movieId) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${showType}/${movieId}/images?api_key=${tmdbApiKey}`
+        `https://api.themoviedb.org/3/${showType}/${movieId}/images?api_key=${
+          import.meta.env.VITE_TMDB_TOKEN
+        }`
       );
       const data = await response.json();
       // console.log(data);
@@ -280,7 +305,9 @@ export function ContextProvider({ children }) {
   const getVideos = async (showType, movieId) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${showType}/${movieId}/videos?api_key=${tmdbApiKey}`
+        `https://api.themoviedb.org/3/${showType}/${movieId}/videos?api_key=${
+          import.meta.env.VITE_TMDB_TOKEN
+        }`
       );
       const data = await response.json();
       // console.log(data);
@@ -297,7 +324,9 @@ export function ContextProvider({ children }) {
   const getReviews = async (showType, movieId) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${showType}/${movieId}/reviews?language=en-US&page=1&api_key=${tmdbApiKey}`
+        `https://api.themoviedb.org/3/${showType}/${movieId}/reviews?language=en-US&page=1&api_key=${
+          import.meta.env.VITE_TMDB_TOKEN
+        }`
       );
       const data = await response.json();
       // console.log(data);
