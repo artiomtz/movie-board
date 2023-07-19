@@ -99,9 +99,7 @@ export function ContextProvider({ children }) {
   const getTrendingMovies = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=${
-          import.meta.env.VITE_TMDB_TOKEN
-        }&page=${page}`
+        `https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=${TMDB_TOKEN}&page=${page}`
       );
       const data = await response.json();
       // console.log(data);
@@ -120,9 +118,7 @@ export function ContextProvider({ children }) {
   const getSimilarMovies = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${selectedMovieId}/similar?language=en-US&api_key=${
-          import.meta.env.VITE_TMDB_TOKEN
-        }&page=${page}`
+        `https://api.themoviedb.org/3/movie/${selectedMovieId}/similar?language=en-US&api_key=${TMDB_TOKEN}&page=${page}`
       );
       const data = await response.json();
       // console.log(data);
@@ -140,9 +136,7 @@ export function ContextProvider({ children }) {
   const searchMovies = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${search}&language=en-US&region=us&include_adult=false&api_key=${
-          import.meta.env.VITE_TMDB_TOKEN
-        }&page=${page}`
+        `https://api.themoviedb.org/3/search/movie?query=${search}&language=en-US&region=us&include_adult=false&api_key=${TMDB_TOKEN}&page=${page}`
       );
       const data = await response.json();
       // console.log(data);
@@ -161,9 +155,7 @@ export function ContextProvider({ children }) {
   const getTrendingTv = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/trending/tv/day?language=en-US&api_key=${
-          import.meta.env.VITE_TMDB_TOKEN
-        }`
+        `https://api.themoviedb.org/3/trending/tv/day?language=en-US&api_key=${TMDB_TOKEN}`
       );
       const data = await response.json();
       // console.log(data);
@@ -180,9 +172,7 @@ export function ContextProvider({ children }) {
     try {
       if (process.env.NODE_ENV == "production") {
         const response = await fetch(
-          `https://api.watchmode.com/v1/sources/?apiKey=${
-            import.meta.env.VITE_WATCHMODE_TOKEN
-          }`
+          `https://api.watchmode.com/v1/sources/?apiKey=${WATCHMODE_TOKEN}`
         );
         const data = await response.json();
         // console.log(data);
@@ -206,9 +196,7 @@ export function ContextProvider({ children }) {
     try {
       if (process.env.NODE_ENV == "production") {
         const response = await fetch(
-          `https://api.watchmode.com/v1/title/movie-${movieId}/sources/?apiKey=${
-            import.meta.env.VITE_WATCHMODE_TOKEN
-          }`
+          `https://api.watchmode.com/v1/title/movie-${movieId}/sources/?apiKey=${WATCHMODE_TOKEN}`
         );
         const data = await response.json();
         // console.log(data);
@@ -233,9 +221,7 @@ export function ContextProvider({ children }) {
   const getLanguages = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/configuration/languages?api_key=${
-          import.meta.env.VITE_TMDB_TOKEN
-        }`
+        `https://api.themoviedb.org/3/configuration/languages?api_key=${TMDB_TOKEN}`
       );
       const data = await response.json();
       // console.log(data);
@@ -250,9 +236,7 @@ export function ContextProvider({ children }) {
   const getMovieDetails = async (showType, movieId) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${showType}/${movieId}?language=en-US&api_key=${
-          import.meta.env.VITE_TMDB_TOKEN
-        }`
+        `https://api.themoviedb.org/3/${showType}/${movieId}?language=en-US&api_key=${TMDB_TOKEN}`
       );
       const data = await response.json();
       // console.log(data);
@@ -267,9 +251,7 @@ export function ContextProvider({ children }) {
   const getCast = async (showType, movieId) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${showType}/${movieId}/credits?language=en-US&api_key=${
-          import.meta.env.VITE_TMDB_TOKEN
-        }`
+        `https://api.themoviedb.org/3/${showType}/${movieId}/credits?language=en-US&api_key=${TMDB_TOKEN}`
       );
       const data = await response.json();
       // console.log(data);
@@ -286,9 +268,7 @@ export function ContextProvider({ children }) {
   const getImages = async (showType, movieId) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${showType}/${movieId}/images?api_key=${
-          import.meta.env.VITE_TMDB_TOKEN
-        }`
+        `https://api.themoviedb.org/3/${showType}/${movieId}/images?api_key=${TMDB_TOKEN}`
       );
       const data = await response.json();
       // console.log(data);
@@ -305,9 +285,7 @@ export function ContextProvider({ children }) {
   const getVideos = async (showType, movieId) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${showType}/${movieId}/videos?api_key=${
-          import.meta.env.VITE_TMDB_TOKEN
-        }`
+        `https://api.themoviedb.org/3/${showType}/${movieId}/videos?api_key=${TMDB_TOKEN}`
       );
       const data = await response.json();
       // console.log(data);
@@ -324,9 +302,7 @@ export function ContextProvider({ children }) {
   const getReviews = async (showType, movieId) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${showType}/${movieId}/reviews?language=en-US&page=1&api_key=${
-          import.meta.env.VITE_TMDB_TOKEN
-        }`
+        `https://api.themoviedb.org/3/${showType}/${movieId}/reviews?language=en-US&page=1&api_key=${TMDB_TOKEN}`
       );
       const data = await response.json();
       // console.log(data);

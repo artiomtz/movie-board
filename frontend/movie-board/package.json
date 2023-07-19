@@ -15,6 +15,7 @@
     "@mui/material": "^5.13.4",
     "@popperjs/core": "^2.11.7",
     "bootstrap": "^5.2.3",
+    "dotenv": "^16.3.1",
     "framer-motion": "^10.12.16",
     "mdb-react-ui-kit": "^6.1.0",
     "mdb-ui-kit": "^6.3.1",
@@ -29,7 +30,7 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",
     "eslint": "^8.38.0",
-    "eslint-plugin-react": "^7.25.3",
+    "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
     "vite": "^4.3.2"
