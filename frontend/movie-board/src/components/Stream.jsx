@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import ContextPage from "../ContextPage";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import movieNotFound from "../assets/movieNotFound.jpg";
+import providerNotFound from "../assets/providerNotFound.jpg";
 import { motion } from "framer-motion";
 import { Oval } from "react-loader-spinner";
 
@@ -12,6 +12,8 @@ export default function Stream(props) {
 
   const iconStyle = {
     height: "30px",
+    width: "30px",
+    borderRadius: "5px",
   };
 
   const loadProviders = () => {
@@ -47,12 +49,9 @@ export default function Stream(props) {
           <motion.div
             key={provider.source_id}
             layout
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{
-              opacity: [0, 1],
-              scale: [0, 1],
-            }}
-            transition={{ duration: 1 }}
+            initial={{ x: "0%", y: "0%", opacity: 0, scale: 0 }}
+            animate={{ opacity: [0, 1], scale: [0, 1] }}
+            transition={{ duration: 0.5 }}
           >
             <Dropdown.Item
               href={provider.web_url}
@@ -63,10 +62,10 @@ export default function Stream(props) {
                 <div className="col-2">
                   <img
                     style={iconStyle}
-                    src={provider.format ? provider.format : movieNotFound}
+                    src={provider.format ? provider.format : providerNotFound}
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null;
-                      currentTarget.src = movieNotFound;
+                      currentTarget.src = providerNotFound;
                     }}
                   />
                 </div>
