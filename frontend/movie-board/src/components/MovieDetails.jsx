@@ -42,7 +42,7 @@ export default function MovieDetails() {
   };
 
   const imageStyle = {
-    height: "500px",
+    width: "85%",
   };
 
   const getPoster = (mainPoster) => {
@@ -79,12 +79,18 @@ export default function MovieDetails() {
         transition={{ duration: 0.5 }}
       >
         <div className="row p-3 align-items-center">
-          <div>
+          <div className="pb-2">
             <a href="/">
               <img style={iconStyle} src={IconApp} alt="App icon didn't load" />
             </a>
           </div>
-          <div className="p-3 col-12 col-sm-12 col-md-12 col-lg-5 col-xl-4 col-xxl-4">
+          <div
+            className="p-3 ps-0 col-12 col-sm-12 col-md-12 col-lg-5 col-xl-4 col-xxl-4"
+            style={{
+              textAlign:
+                window.innerHeight < window.innerWidth ? "left" : "center",
+            }}
+          >
             <img
               className="p-3 border rounded shadow"
               style={imageStyle}

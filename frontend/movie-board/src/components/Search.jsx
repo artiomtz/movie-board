@@ -29,7 +29,7 @@ export default function Search() {
   return (
     <div className="container sticky-top p-4 pt-5 col-8 col-sm-6 col-md-6 col-lg-6 col-xl-4">
       <div className="row justify-content-center">
-        <div className="col-10 col-xxl-7">
+        <div className="col-8 col-sm-9 col-md-7 col-lg-7 col-xl-7 col-xxl-7">
           <input
             type="text"
             className="form-control"
@@ -40,7 +40,7 @@ export default function Search() {
             }}
           ></input>
         </div>
-        <div className="col-2 col-xxl-2">
+        <div className="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
           <button
             className="btn btn-primary"
             onClick={() => {

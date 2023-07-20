@@ -32,7 +32,7 @@ export default function Movie(props) {
   };
 
   return (
-    <div className="col-9 col-sm-9 col-lg-4 p-3">
+    <div className="col-11 col-sm-9 col-lg-4 p-3">
       <motion.div
         layout
         initial={{ opacity: 0, scale: 0.5 }}
@@ -48,10 +48,14 @@ export default function Movie(props) {
               <Link to={"/movie/" + props.movieId}>
                 <motion.p whileHover={{ scale: 1.05, opacity: 0.5 }}>
                   <Tooltip
-                    placement="left-end"
                     arrow
                     TransitionComponent={Zoom}
                     TransitionProps={{ timeout: 250 }}
+                    placement={
+                      window.innerHeight < window.innerWidth
+                        ? "left-end"
+                        : "bottom"
+                    }
                     title={
                       <>
                         <Typography
