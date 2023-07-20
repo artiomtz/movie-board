@@ -29,7 +29,15 @@ export default function Search() {
   return (
     <div className="container sticky-top p-4 pt-5 col-8 col-sm-6 col-md-6 col-lg-6 col-xl-4">
       <div className="row justify-content-center">
-        <div className="col-8 col-sm-9 col-md-7 col-lg-7 col-xl-7 col-xxl-7">
+        <div
+          className="col-8 col-sm-9 col-md-7 col-lg-7 col-xl-7 col-xxl-7"
+          style={{
+            paddingRight:
+              window.innerHeight < window.innerWidth ? "10px" : "0px",
+            paddingLeft:
+              window.innerHeight < window.innerWidth ? "20px" : "0px",
+          }}
+        >
           <input
             type="text"
             className="form-control"
