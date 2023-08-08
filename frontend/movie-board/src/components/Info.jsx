@@ -110,11 +110,15 @@ export default function Info() {
 
   const getPrice = (amount) => {
     return amount
-      ? amount.toLocaleString("us-US", {
-          style: "currency",
-          currency: "USD",
-          maximumFractionDigits: 0,
-        }) + " USD"
+      ? "$" +
+          amount
+            .toLocaleString("us-US", {
+              style: "currency",
+              currency: "USD",
+              maximumFractionDigits: 0,
+            })
+            .split("$")[1] +
+          " USD"
       : "Unknown";
   };
 
