@@ -12,7 +12,7 @@ export default function MovieList() {
     selectedMovieId,
     resultsType,
     setResultsType,
-    pageAmount,
+    totalPages,
     updateMovies,
   } = useContext(ContextPage);
 
@@ -25,7 +25,7 @@ export default function MovieList() {
   }, [page, search, selectedMovieId, resultsType]);
 
   const loadMore = () => {
-    if (movies.length == 0 || movies.length % pageAmount != 0) {
+    if (page >= totalPages) {
       setResultsType("trending");
       setPage(1);
     } else {
@@ -36,7 +36,7 @@ export default function MovieList() {
   const loadMoreText = () => {
     if (movies.length == 0) {
       return "Whoops... Try loading more";
-    } else if (movies.length % pageAmount != 0) {
+    } else if (page >= totalPages) {
       return "That's it. Click to go back to Trending";
     } else {
       return "Load More";

@@ -7,7 +7,7 @@ import { Tooltip, Zoom, Typography } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Movie(props) {
-  const { setPage, languages, setResultsType, setSelectedMovieId } =
+  const { setPage, setResultsType, setSelectedMovieId } =
     useContext(ContextPage);
 
   const imageStyle = {

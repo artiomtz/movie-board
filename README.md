@@ -10,7 +10,7 @@ A responsive React-based movie website which allows users to view trending movie
 
 ### Setup
 
-1. Obtain a TMDB and WatchMode API tokens.
+1. Obtain API tokens (WatchMode for streaming providers, TMDB for all other movie details).
 2. Download the repository and go to `frontend\movie-board\`.
 3. Create a `.env` file with the API tokens (example in .env_example).
 4. Run the project with the commands below.
