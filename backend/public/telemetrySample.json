@@ -1,0 +1,13 @@
+{
+  "continent_name": "North America",
+  "country_code": "CA",
+  "country_name": "Canada",
+  "region_code": "ON",
+  "region_name": "Ontario",
+  "city": "Kitchener",
+  "zip": "N2P 1A7",
+  "latitude": 43.47,
+  "longitude": -80.51,
+  "country_flag": "https://assets.ipstack.com/flags/ca.svg",
+  "date": "2023-08-25"
+}
