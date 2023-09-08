@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+import ContextPage from "../ContextPage";
 import IconApp from "../assets/iconApp.png";
 import IconTmdb from "../assets/iconTmdb.svg";
 import IconWatchMode from "../assets/iconWatchMode.png";
@@ -6,6 +7,12 @@ import IconMadeBy from "../assets/iconMadeBy.png";
 import { motion } from "framer-motion";
 
 export default function Title() {
+  const { postTelemetry } = useContext(ContextPage);
+
+  useEffect(() => {
+    // postTelemetry();
+  }, []);
+
   const bigIconStyle = {
     objectFit: "contain",
     height: "320px",

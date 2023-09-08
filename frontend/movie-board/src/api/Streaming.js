@@ -6,7 +6,7 @@ export const getAvailableProvidersApi = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(
+    console.error(
       "Error while loading available providers data. Try again later."
     );
   }
@@ -20,6 +20,6 @@ export const getMovieProvidersApi = async (movieId) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("Error while loading movie providers data. Try again later.");
+    console.error("Error while loading movie providers data. Try again later.");
   }
 };

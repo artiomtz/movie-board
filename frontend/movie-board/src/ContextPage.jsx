@@ -16,16 +16,26 @@ import {
   getMovieProvidersApi,
 } from "./api/Streaming";
 import {
+  getTelemetryApi,
+  postTelemetryApi,
+  getSessionTelemetryApi,
+} from "./api/Telemetry";
+import {
   filterMovies,
   filterProviders,
   filterCast,
 } from "./utils/FilterDuplicates";
+import { filterTelemetry } from "./utils/FilterTelemetry";
 import {
   movieProvidersExample,
   availableProvidersExample,
 } from "./assets/apiResponseExample.js";
 
 const ContextPage = createContext();
+const serverUrl =
+  process.env.NODE_ENV == "production"
+    ? TELEMETRY_SERVER
+    : TELEMETRY_SERVER_LOCAL;
 
 export function ContextProvider({ children }) {
   const [page, setPage] = useState(1);
@@ -44,6 +54,7 @@ export function ContextProvider({ children }) {
   const [resultsType, setResultsType] = useState("trending");
   const [totalPages, setTotalPages] = useState(10);
   const [isLoading, setIsLoading] = useState(true);
+  const [telemetry, setTelemetry] = useState([]);
 
   const updateMovies = () => {
     if (page == 1) {
@@ -181,6 +192,29 @@ export function ContextProvider({ children }) {
     }
   };
 
+  const getTelemetry = async () => {
+    const data = await getTelemetryApi(serverUrl);
+    console.log("getTelemetryApi: " + JSON.stringify(data));
+    setTelemetry(() => {
+      return data ? data : [];
+    });
+  };
+
+  const postTelemetry = async () => {
+    const sessionTelemetry = await getSessionTelemetryApi();
+    console.log("sessionTelemetry: " + JSON.stringify(sessionTelemetry));
+    const filteredSessionTelemetry = filterTelemetry(sessionTelemetry);
+    console.log(
+      "filteredSessionTelemetry: " + JSON.stringify(filteredSessionTelemetry)
+    );
+    const result = await postTelemetryApi(serverUrl, filteredSessionTelemetry);
+    if (result) {
+      console.log("Successfully registered telemetry");
+    } else {
+      console.warn("Couldn't register telemetry");
+    }
+  };
+
   return (
     <ContextPage.Provider
       value={{
@@ -217,6 +251,8 @@ export function ContextProvider({ children }) {
         getLanguages,
         searchMovies,
         getTrendingTv,
+        getTelemetry,
+        postTelemetry,
       }}
     >
       {children}

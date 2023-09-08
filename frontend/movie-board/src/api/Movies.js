@@ -7,7 +7,7 @@ export const getTrendingMoviesApi = async (page) => {
     return data;
   } catch (error) {
     alert("hmm.. something's not right");
-    console.log("Error while loading trending movies. Try again later.");
+    console.error("Error while loading trending movies. Try again later.");
   }
 };
 
@@ -19,7 +19,7 @@ export const getSimilarMoviesApi = async (page, movieId) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("Error while loading similar movies data. Try again later.");
+    console.error("Error while loading similar movies data. Try again later.");
   }
 };
 
@@ -32,7 +32,7 @@ export const searchMoviesApi = async (page, query) => {
     return data;
   } catch (error) {
     alert("hmm.. something's not right");
-    console.log("Error while loading search data. Try again later.");
+    console.error("Error while loading search data. Try again later.");
   }
 };
 
@@ -45,7 +45,7 @@ export const getTrendingTvApi = async () => {
     return data;
   } catch (error) {
     alert("Couldn't load Trending TV...");
-    console.log("Error while loading trending TV data. Try again later.");
+    console.error("Error while loading trending TV data. Try again later.");
   }
 };
 
@@ -57,7 +57,7 @@ export const getLanguagesApi = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("Error while loading Languages data. Try again later.");
+    console.error("Error while loading Languages data. Try again later.");
   }
 };
 
@@ -69,7 +69,7 @@ export const getMovieDetailsApi = async (showType, movieId) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("Error while loading Movie details. Try again later.");
+    console.error("Error while loading Movie details. Try again later.");
   }
 };
 
@@ -81,7 +81,7 @@ export const getCastApi = async (showType, movieId) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("Error while loading Cast. Try again later.");
+    console.error("Error while loading Cast. Try again later.");
   }
 };
 
@@ -93,7 +93,7 @@ export const getImagesApi = async (showType, movieId) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("Error while loading Images. Try again later.");
+    console.error("Error while loading Images. Try again later.");
   }
 };
 
@@ -105,7 +105,7 @@ export const getVideosApi = async (showType, movieId) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("Error while loading Videos. Try again later.");
+    console.error("Error while loading Videos. Try again later.");
   }
 };
 
@@ -117,6 +117,6 @@ export const getReviewsApi = async (showType, movieId) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("Error while loading Videos. Try again later.");
+    console.error("Error while loading Videos. Try again later.");
   }
 };
