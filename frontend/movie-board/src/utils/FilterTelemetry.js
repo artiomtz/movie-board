@@ -29,8 +29,5 @@ export const filterTelemetry = (inputJson) => {
   ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
   transformedJson.date = dateFormatted;
 
-  console.log("the new json:");
-  console.log(transformedJson);
-
   return transformedJson;
 };

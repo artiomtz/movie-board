@@ -81,7 +81,7 @@ export default function MovieDetails() {
         <div className="row p-3 align-items-center">
           <div className="pb-2">
             <a href="/">
-              <img style={iconStyle} src={IconApp} alt="App icon didn't load" />
+              <img style={iconStyle} src={IconApp} alt="Home" />
             </a>
           </div>
           <div
@@ -99,7 +99,7 @@ export default function MovieDetails() {
                 currentTarget.onerror = null;
                 currentTarget.src = movieNotFound;
               }}
-              alt="Movie title didn't load"
+              alt="Movie poster didn't load"
             />
           </div>
           <div className="p-3 col-12 col-sm-12 col-md-12 col-lg-7 col-xl-8 col-xxl-8 shadow">

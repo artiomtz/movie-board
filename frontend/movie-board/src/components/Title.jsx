@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import ContextPage from "../ContextPage";
 import IconApp from "../assets/iconApp.png";
 import IconTmdb from "../assets/iconTmdb.svg";
@@ -10,7 +11,7 @@ export default function Title() {
   const { postTelemetry } = useContext(ContextPage);
 
   useEffect(() => {
-    // postTelemetry();
+    postTelemetry();
   }, []);
 
   const bigIconStyle = {
@@ -21,8 +22,13 @@ export default function Title() {
 
   const iconStyle = {
     objectFit: "contain",
-    height: "70px",
+    height: "50px",
     width: "100%",
+  };
+
+  const telemetryStyle = {
+    fontSize: "10px",
+    opacity: 0.5,
   };
 
   return (
@@ -34,13 +40,39 @@ export default function Title() {
       className="container p-3 col-12 col-sm-10 col-md-10 col-lg-4 col-xl-4 col-xxl-3"
     >
       <div className="row justify-content-center">
+        <div className="m-0 p-0">
+          <div className="row justify-content-evenly">
+            <div className="col-3">
+              <Link to={"/telemetry/"}>
+                <button
+                  type="button"
+                  className="btn btn-secondary m-0 ms-2 me-2 p-0 ps-4 pe-4"
+                  style={telemetryStyle}
+                >
+                  Telemetry
+                </button>
+              </Link>
+            </div>
+            <div className="col-3">
+              <a
+                href="https://github.com/artiomtz/movie-board"
+                target="_blank"
+                rel="external"
+              >
+                <button
+                  type="button"
+                  className="btn btn-secondary m-0 ms-2 me-2 p-0 ps-4 pe-4"
+                  style={telemetryStyle}
+                >
+                  Github
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
         <div>
           <a href="/">
-            <img
-              style={bigIconStyle}
-              src={IconApp}
-              alt="App icon didn't load"
-            />
+            <img style={bigIconStyle} src={IconApp} alt="App icon - Home" />
           </a>
         </div>
         <div className="row">
@@ -50,29 +82,17 @@ export default function Title() {
               target="_blank"
               rel="external"
             >
-              <img
-                style={iconStyle}
-                src={IconTmdb}
-                alt="App icon didn't load"
-              />
+              <img style={iconStyle} src={IconTmdb} alt="TMDB" />
             </a>
           </div>
           <div className="p-2 col-4 col-xl-4">
             <a href="https://www.watchmode.com/" target="_blank" rel="external">
-              <img
-                style={iconStyle}
-                src={IconWatchMode}
-                alt="App icon didn't load"
-              />
+              <img style={iconStyle} src={IconWatchMode} alt="WatchMode" />
             </a>
           </div>
           <div className="p-2 col-4 col-xl-4">
             <a href="http://artiomtsimk.in/" target="_blank" rel="external">
-              <img
-                style={iconStyle}
-                src={IconMadeBy}
-                alt="App icon didn't load"
-              />
+              <img style={iconStyle} src={IconMadeBy} alt="My Website" />
             </a>
           </div>
         </div>

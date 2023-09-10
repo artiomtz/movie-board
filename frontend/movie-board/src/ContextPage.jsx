@@ -158,7 +158,7 @@ export function ContextProvider({ children }) {
 
   const getCast = async (showType, movieId) => {
     const data = await getCastApi(showType, movieId);
-    if (data) {
+    if (data && data.cast) {
       setCast(() => {
         return filterCast(data.cast).concat(filterCast(data.crew));
       });
@@ -194,19 +194,16 @@ export function ContextProvider({ children }) {
 
   const getTelemetry = async () => {
     const data = await getTelemetryApi(serverUrl);
-    console.log("getTelemetryApi: " + JSON.stringify(data));
-    setTelemetry(() => {
-      return data ? data : [];
-    });
+    if (data) {
+      setTelemetry(() => {
+        return data.results ? data.results : [];
+      });
+    }
   };
 
   const postTelemetry = async () => {
     const sessionTelemetry = await getSessionTelemetryApi();
-    console.log("sessionTelemetry: " + JSON.stringify(sessionTelemetry));
     const filteredSessionTelemetry = filterTelemetry(sessionTelemetry);
-    console.log(
-      "filteredSessionTelemetry: " + JSON.stringify(filteredSessionTelemetry)
-    );
     const result = await postTelemetryApi(serverUrl, filteredSessionTelemetry);
     if (result) {
       console.log("Successfully registered telemetry");
@@ -251,6 +248,7 @@ export function ContextProvider({ children }) {
         getLanguages,
         searchMovies,
         getTrendingTv,
+        telemetry,
         getTelemetry,
         postTelemetry,
       }}
