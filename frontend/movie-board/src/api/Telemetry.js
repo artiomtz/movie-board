@@ -20,7 +20,7 @@ export const postTelemetryApi = async (serverUrl, newTelemetry) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.warn("Error while fetching telemetry data.");
+    console.warn("Error while posting telemetry data.");
   }
 };
 

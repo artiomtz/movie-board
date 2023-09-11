@@ -203,12 +203,19 @@ export function ContextProvider({ children }) {
 
   const postTelemetry = async () => {
     const sessionTelemetry = await getSessionTelemetryApi();
-    const filteredSessionTelemetry = filterTelemetry(sessionTelemetry);
-    const result = await postTelemetryApi(serverUrl, filteredSessionTelemetry);
-    if (result) {
-      console.log("Successfully registered telemetry");
+    if (sessionTelemetry.city) {
+      const filteredSessionTelemetry = filterTelemetry(sessionTelemetry);
+      const result = await postTelemetryApi(
+        serverUrl,
+        filteredSessionTelemetry
+      );
+      if (result) {
+        console.log("Successfully registered telemetry");
+      } else {
+        console.warn("Couldn't register telemetry");
+      }
     } else {
-      console.warn("Couldn't register telemetry");
+      console.warn("Couldn't retrieve telemetry");
     }
   };
 
