@@ -42,18 +42,18 @@ export default function Title() {
       <div className="row justify-content-center">
         <div className="m-0 p-0">
           <div className="row justify-content-evenly">
-            <div className="col-3">
+            <div className="col-3 p-0 text-center">
               <Link to={"/telemetry/"}>
                 <button
                   type="button"
-                  className="btn btn-secondary m-0 ms-2 me-2 p-0 ps-4 pe-4"
+                  className="btn btn-secondary p-0 ps-4 pe-4"
                   style={telemetryStyle}
                 >
                   Telemetry
                 </button>
               </Link>
             </div>
-            <div className="col-3">
+            <div className="col-3 p-0 text-center">
               <a
                 href="https://github.com/artiomtz/movie-board"
                 target="_blank"
@@ -61,7 +61,7 @@ export default function Title() {
               >
                 <button
                   type="button"
-                  className="btn btn-secondary m-0 ms-2 me-2 p-0 ps-4 pe-4"
+                  className="btn btn-secondary p-0 ps-4 pe-4"
                   style={telemetryStyle}
                 >
                   Github

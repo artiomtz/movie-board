@@ -203,7 +203,7 @@ export function ContextProvider({ children }) {
 
   const postTelemetry = async () => {
     const sessionTelemetry = await getSessionTelemetryApi();
-    if (sessionTelemetry.city) {
+    if (sessionTelemetry && sessionTelemetry.city) {
       const filteredSessionTelemetry = filterTelemetry(sessionTelemetry);
       const result = await postTelemetryApi(
         serverUrl,
