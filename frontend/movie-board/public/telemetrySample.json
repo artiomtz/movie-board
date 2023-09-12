@@ -3,16 +3,10 @@
   "country_code": "CA",
   "country_name": "Canada",
   "region_code": "ON",
-  "region_name": "Ontario",
+  "region": "Ontario",
   "city": "Kitchener",
-  "zip": "N2P 1A7",
-  "latitude": 43.47,
-  "longitude": -80.51,
-  "location": {
-    "country_flag": "https://assets.ipstack.com/flags/ca.svg",
-    "country_flag_emoji": "🇨🇦",
-    "country_flag_emoji_unicode": "U+1F1E8 U+1F1E6",
-    "calling_code": "1",
-    "is_eu": false
-  }
+  "postal": "N2P",
+  "latitude": 43.4784,
+  "longitude": -80.5156,
+  "flag": "https://ipdata.co/flags/ca.png"
 }

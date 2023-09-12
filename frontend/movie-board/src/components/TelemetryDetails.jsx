@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import ContextPage from "../ContextPage";
 import IconApp from "../assets/iconApp.png";
-import iconIpstack from "../assets/iconIpstack.svg";
+import iconIpdata from "../assets/iconIpdata.jpg";
 import { motion } from "framer-motion";
 import { BarChart, XAxis, YAxis, Tooltip, Bar, Cell } from "recharts";
 
@@ -12,7 +12,12 @@ export default function TelemetryDetails() {
     objectFit: "contain",
     height: "100px",
     width: "100%",
-    paddingTop: "20px",
+  };
+
+  const iconTelemetryStyle = {
+    opacity: "0.3",
+    height: "50px",
+    borderRadius: "10px",
   };
 
   const bigTitleStyle = {
@@ -29,8 +34,7 @@ export default function TelemetryDetails() {
   const tooltipImageStyle = {
     marginLeft: "5px",
     marginRight: "5px",
-    marginTop: "2px",
-    marginBottom: "2px",
+    marginBottom: "3px",
   };
 
   const transformData = (data) => {
@@ -207,9 +211,9 @@ export default function TelemetryDetails() {
             </BarChart>
           </div>
         </div>
-        <div className="p-4">
-          <a href="https://ipstack.com/" target="_blank" rel="external">
-            <img style={iconStyle} src={iconIpstack} alt="Ipstack" />
+        <div className="p-3 mt-5">
+          <a href="https://ipdata.co/" target="_blank" rel="external">
+            <img style={iconTelemetryStyle} src={iconIpdata} alt="ipdata" />
           </a>
         </div>
       </motion.div>

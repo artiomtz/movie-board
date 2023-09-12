@@ -8,7 +8,7 @@ export default defineConfig({
   define: {
     TMDB_TOKEN: `"${process.env.TMDB_TOKEN}"`,
     WATCHMODE_TOKEN: `"${process.env.WATCHMODE_TOKEN}"`,
-    IPSTACK_TOKEN: `"${process.env.IPSTACK_TOKEN}"`,
+    IPDATA_TOKEN: `"${process.env.IPDATA_TOKEN}"`,
     TELEMETRY_SERVER: `"${process.env.TELEMETRY_SERVER}"`,
     TELEMETRY_SERVER_LOCAL: `"${process.env.TELEMETRY_SERVER_LOCAL}"`,
   },

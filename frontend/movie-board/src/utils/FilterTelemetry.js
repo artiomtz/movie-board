@@ -2,17 +2,30 @@ export const filterTelemetry = (inputJson) => {
   const transformedJson = { ...inputJson };
 
   delete transformedJson.ip;
+  delete transformedJson.asn;
+  delete transformedJson.count;
+  delete transformedJson.currency;
   delete transformedJson.type;
   delete transformedJson.continent_code;
   delete transformedJson.country_flag_emoji;
   delete transformedJson.country_flag_emoji_unicode;
   delete transformedJson.calling_code;
   delete transformedJson.is_eu;
+  delete transformedJson.emoji_flag;
+  delete transformedJson.emoji_unicode;
+  delete transformedJson.languages;
+  delete transformedJson.region_type;
+  delete transformedJson.threat;
+  delete transformedJson.time_zone;
 
-  if (transformedJson.location) {
-    transformedJson.country_flag = transformedJson.location.country_flag;
-    delete transformedJson.location;
-  }
+  transformedJson.region_name = transformedJson.region;
+  delete transformedJson.region;
+
+  transformedJson.zip = transformedJson.postal;
+  delete transformedJson.postal;
+
+  transformedJson.country_flag = transformedJson.flag;
+  delete transformedJson.flag;
 
   if (transformedJson.latitude) {
     transformedJson.latitude = parseFloat(transformedJson.latitude.toFixed(2));

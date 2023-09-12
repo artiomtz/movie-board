@@ -27,7 +27,7 @@ export const postTelemetryApi = async (serverUrl, newTelemetry) => {
 export const getSessionTelemetryApi = async () => {
   try {
     const response = await fetch(
-      `http://api.ipstack.com/check?access_key=${IPSTACK_TOKEN}`
+      `https://api.ipdata.co?api-key=${IPDATA_TOKEN}`
     );
     const data = await response.json();
     return data;

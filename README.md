@@ -22,7 +22,7 @@ A responsive React-based movie website which allows users to view trending movie
 1. Obtain API tokens:
    - WatchMode for streaming providers.
    - TMDB for all other movie details.
-   - Ipstack for telemetry data.
+   - ipdata for telemetry data.
 2. Download the repository and go to `frontend/movie-board/`.
 3. Create a `.env` file with the API tokens (example in .env_example).
 4. Run it with the commands below.
@@ -73,11 +73,11 @@ npm run devStart
 
 ## References
 
-1. All movies, TV, details, etc. API: [TMDB](https://www.themoviedb.org)
-2. Streaming providers API: [WatchMode](https://www.watchmode.com)
-3. Telemetry API: [ipstack](https://ipstack.com)
-4. Missing movie thumbnail: [Pinterest](https://www.pinterest.ca/pin/movie-icon-aesthetic-black-and-white--208361920250010171)
-5. Missing cast icon: [Vecteezy](https://www.vecteezy.com/vector-art/8442086-illustration-of-human-icon-vector-user-symbol-icon-modern-design-on-blank-background)
+- All movies, TV, details, etc. API: [TMDB](https://www.themoviedb.org)
+- Streaming providers API: [WatchMode](https://www.watchmode.com)
+- Telemetry API: [ipdata](https://ipdata.co/)
+- Missing movie thumbnail: [Pinterest](https://www.pinterest.ca/pin/movie-icon-aesthetic-black-and-white--208361920250010171)
+- Missing cast icon: [Vecteezy](https://www.vecteezy.com/vector-art/8442086-illustration-of-human-icon-vector-user-symbol-icon-modern-design-on-blank-background)
 
 ### Screenshots
 
