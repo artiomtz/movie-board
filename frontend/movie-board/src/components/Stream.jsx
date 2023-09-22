@@ -7,8 +7,7 @@ import { motion } from "framer-motion";
 import { Oval } from "react-loader-spinner";
 
 export default function Stream(props) {
-  const { providers, getMovieProviders, isLoading, setIsLoading } =
-    useContext(ContextPage);
+  const { providers, getMovieProviders, isLoading } = useContext(ContextPage);
 
   const iconStyle = {
     height: "30px",
@@ -23,7 +22,6 @@ export default function Stream(props) {
   };
 
   const loadProviders = () => {
-    setIsLoading(true);
     getMovieProviders(props.movieId);
   };
 

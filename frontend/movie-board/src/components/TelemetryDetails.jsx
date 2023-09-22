@@ -3,10 +3,11 @@ import ContextPage from "../ContextPage";
 import IconApp from "../assets/iconApp.png";
 import iconIpdata from "../assets/iconIpdata.jpg";
 import { motion } from "framer-motion";
+import { Oval } from "react-loader-spinner";
 import { BarChart, XAxis, YAxis, Tooltip, Bar, Cell } from "recharts";
 
 export default function TelemetryDetails() {
-  const { telemetry, getTelemetry } = useContext(ContextPage);
+  const { telemetry, getTelemetry, isLoading } = useContext(ContextPage);
 
   const iconStyle = {
     objectFit: "contain",
@@ -176,41 +177,59 @@ export default function TelemetryDetails() {
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
+        className="row justify-content-center"
       >
-        <div className="row p-4 justify-content-center shadow">
-          <div className="row p-4 m-0 col-12 justify-content-center shadow">
-            <BarChart
-              width={setChartWidth(true)}
-              height={400}
-              data={transformedTelemetry}
-            >
-              <XAxis
-                dataKey="date"
-                tickCount={4}
-                interval={7}
-                tickMargin={15}
-                tick={{ textAnchor: "middle", fontSize: setChartWidth(false) }}
-              />
-              <YAxis
-                domain={[0, 3]}
-                allowDecimals={false}
-                label={{
-                  value: "Visits",
-                  angle: -90,
-                  position: "insideLeft",
-                }}
-                tickFormatter={(tick) => (tick === 0 ? "" : tick)}
-                tickMargin={10}
-              />
-              <Tooltip content={({ payload }) => setTooltip(payload)} />
-              <Bar dataKey="totalCount" fill="#8884d8" barSize={20}>
-                {transformedTelemetry.map((entry, index) => (
-                  <Cell key={index} />
-                ))}
-              </Bar>
-            </BarChart>
+        {isLoading ? (
+          <div style={{ width: "10%" }}>
+            <Oval
+              height={80}
+              width={80}
+              color="gray"
+              wrapperStyle={{}}
+              secondaryColor="light-gray"
+              strokeWidth={7}
+              strokeWidthSecondary={7}
+            />
           </div>
-        </div>
+        ) : (
+          <div className="row p-4 justify-content-center shadow">
+            <div className="row p-4 m-0 col-12 justify-content-center shadow">
+              <BarChart
+                width={setChartWidth(true)}
+                height={400}
+                data={transformedTelemetry}
+              >
+                <XAxis
+                  dataKey="date"
+                  tickCount={4}
+                  interval={7}
+                  tickMargin={15}
+                  tick={{
+                    textAnchor: "middle",
+                    fontSize: setChartWidth(false),
+                  }}
+                />
+                <YAxis
+                  domain={[0, 3]}
+                  allowDecimals={false}
+                  label={{
+                    value: "Visits",
+                    angle: -90,
+                    position: "insideLeft",
+                  }}
+                  tickFormatter={(tick) => (tick === 0 ? "" : tick)}
+                  tickMargin={10}
+                />
+                <Tooltip content={({ payload }) => setTooltip(payload)} />
+                <Bar dataKey="totalCount" fill="#8884d8" barSize={20}>
+                  {transformedTelemetry.map((entry, index) => (
+                    <Cell key={index} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </div>
+          </div>
+        )}
         <div className="p-3 mt-5">
           <a href="https://ipdata.co/" target="_blank" rel="external">
             <img style={iconTelemetryStyle} src={iconIpdata} alt="ipdata" />

@@ -122,6 +122,7 @@ export function ContextProvider({ children }) {
   };
 
   const getMovieProviders = async (movieId) => {
+    setIsLoading(true);
     if (process.env.NODE_ENV == "production") {
       const data = await getMovieProvidersApi(movieId);
       if (data && Array.isArray(data)) {
@@ -193,12 +194,14 @@ export function ContextProvider({ children }) {
   };
 
   const getTelemetry = async () => {
+    setIsLoading(true);
     const data = await getTelemetryApi(serverUrl);
     if (data) {
       setTelemetry(() => {
         return data.results ? data.results : [];
       });
     }
+    setIsLoading(false);
   };
 
   const postTelemetry = async () => {
@@ -243,7 +246,6 @@ export function ContextProvider({ children }) {
         setResultsType,
         totalPages,
         isLoading,
-        setIsLoading,
         updateMovies,
         getMovieDetails,
         getCast,
