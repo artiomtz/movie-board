@@ -180,10 +180,10 @@ export default function TelemetryDetails() {
         className="row justify-content-center"
       >
         {isLoading ? (
-          <div style={{ width: "10%" }}>
+          <div style={{ width: "100px" }}>
             <Oval
-              height={80}
-              width={80}
+              height={100}
+              width={100}
               color="gray"
               wrapperStyle={{}}
               secondaryColor="light-gray"
