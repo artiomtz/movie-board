@@ -190,6 +190,7 @@ export default function TelemetryDetails() {
               strokeWidth={7}
               strokeWidthSecondary={7}
             />
+            This may take a minute...
           </div>
         ) : (
           <div className="row p-4 justify-content-center shadow">
