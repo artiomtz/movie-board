@@ -6,7 +6,7 @@ Available at: [movie-board.onrender.com](https://movie-board.onrender.com)
 
 ### Overview
 
-A responsive React-based movie website which allows users to view trending movies and TV shows, search for movies, discover similar movies, and see streaming options. It showcases details like rating, genres, overview, videos, cast, reviews, links, collections, and more. Furthermore, it aggregates telemetry data and displays the numbers of visitors in the last month.
+A responsive MERN stack-based movie website that allows users to view trending movies and TV shows, search for movies, discover similar movies, and see streaming options. It showcases details like ratings, genres, overviews, videos, cast, reviews, links, collections, and more. Furthermore, it aggregates telemetry data and displays the number of visitors in the last month.
 
 ## Front-end
 
@@ -79,7 +79,7 @@ npm run devStart
 - Missing movie thumbnail: [Pinterest](https://www.pinterest.ca/pin/movie-icon-aesthetic-black-and-white--208361920250010171)
 - Missing cast icon: [Vecteezy](https://www.vecteezy.com/vector-art/8442086-illustration-of-human-icon-vector-user-symbol-icon-modern-design-on-blank-background)
 
-### Screenshots
+## Screenshots
 
 ![App screenshot 1](frontend/movie-board/src/assets/app1.png)
 
